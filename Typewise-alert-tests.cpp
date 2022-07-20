@@ -58,9 +58,13 @@ TEST_CASE( "Classify Check and alert status to controller") {
 TEST_CASE( "Classify Check and alert status to email") {
 
   checkAndAlert(TO_EMAIL, batteryChar_passive, 12);
-  REQUIRE(IsAlertSenttoEmail() == (true));
+  REQUIRE(IsAlertSenttoEmail() == (false));
   checkAndAlert(TO_EMAIL, batteryChar_hiactive, 26);
-  REQUIRE(IsAlertSenttoEmail() == (true));
+  REQUIRE(IsAlertSenttoEmail() == (false));
   checkAndAlert(TO_EMAIL, batteryChar_medactive, 8);
-  REQUIRE(IsAlertSenttoEmail() == (true));
+  REQUIRE(IsAlertSenttoEmail() == (false));
+  checkAndAlert(TO_EMAIL, batteryChar_passive, -1);
+  REQUIRE(IsAlertSenttoEmail() == (false));
+  checkAndAlert(TO_EMAIL, batteryChar_hiactive, 46);
+  REQUIRE(IsAlertSenttoEmail() == (false));
 }
