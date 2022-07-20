@@ -45,28 +45,30 @@ TEST_CASE( "Classify temperature breach for Medium active cooling") {
 
 }
 
-TEST_CASE( "Classify Check and alert status to controller") {
+TEST_CASE( "Check and alert status to controller") {
 
-  checkAndAlert(TO_CONTROLLER, batteryChar_passive, 12);
-  REQUIRE(IsAlertSenttoCntrlr() == (true));
-  checkAndAlert(TO_CONTROLLER, batteryChar_hiactive, 26);
-  REQUIRE(IsAlertSenttoCntrlr() == (true));
-  checkAndAlert(TO_CONTROLLER, batteryChar_medactive, 8);
-  REQUIRE(IsAlertSenttoCntrlr() == (true));
+  REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar_passive, 12) == SENT );
+
+  REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar_hiactive, 26) == SENT );
+
+  REQUIRE(checkAndAlert(TO_CONTROLLER, batteryChar_medactive, 8) == SENT );
+
 }
 
-TEST_CASE( "Classify Check and alert status to email") {
+TEST_CASE( "Check and alert status to email") {
 
-  checkAndAlert(TO_EMAIL, batteryChar_passive, 12);
-  REQUIRE(IsAlertSenttoEmail() == (false));
-  checkAndAlert(TO_EMAIL, batteryChar_hiactive, 26);
-  REQUIRE(IsAlertSenttoEmail() == (false));
-  checkAndAlert(TO_EMAIL, batteryChar_medactive, 8);
-  REQUIRE(IsAlertSenttoEmail() == (false));
-  checkAndAlert(TO_EMAIL, batteryChar_passive, -1);
-  REQUIRE(IsAlertSenttoEmail() == (true));
-  checkAndAlert(TO_EMAIL, batteryChar_hiactive, 46);
-  REQUIRE(IsAlertSenttoEmail() == (true));
-  checkAndAlert(TO_EMAIL, batteryChar_medactive, 45);
-  REQUIRE(IsAlertSenttoEmail() == (true));
+  REQUIRE(checkAndAlert(TO_EMAIL, batteryChar_passive, 12) == SENT );
+
+  REQUIRE(checkAndAlert(TO_EMAIL, batteryChar_hiactive, 26) == SENT );
+
+  REQUIRE(checkAndAlert(TO_EMAIL, batteryChar_medactive, 8) == SENT );
+}
+
+TEST_CASE( "Check and alert status to email Failure") {
+
+  REQUIRE(checkAndAlert(TO_UNKNOWN, batteryChar_passive, 12) == NOT_SENT );
+
+  REQUIRE(checkAndAlert(TO_UNKNOWN, batteryChar_hiactive, 26) == NOT_SENT );
+
+  REQUIRE(checkAndAlert(TO_UNKNOWN, batteryChar_medactive, 8) == NOT_SENT );
 }
