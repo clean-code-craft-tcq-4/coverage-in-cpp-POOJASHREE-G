@@ -1,7 +1,6 @@
 #ifndef TYPEWISE_ALERT_HPP
 #define TYPEWISE_ALERT_HPP
 
-
 class PASSIVE_COOLING
 {
   public:
@@ -46,6 +45,8 @@ struct BatteryCharacter {
 
 void sendToController(BreachType breachType);
 void sendToEmail(BreachType breachType);
+bool IsAlertSenttoCntrlr();
+bool IsAlertSenttoEmail();
 
 template <class CoolingType>
 BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC) {
@@ -55,7 +56,7 @@ BreachType classifyTemperatureBreach(CoolingType coolingType, double temperature
 }
 
 template <typename CoolingType>
-bool checkAndAlert(
+void checkAndAlert(
   AlertTarget alertTarget, BatteryCharacter<CoolingType> batteryChar, double temperatureInC) {
 
   BreachType breachType = classifyTemperatureBreach( batteryChar.coolingType, temperatureInC );
@@ -68,7 +69,6 @@ bool checkAndAlert(
       sendToEmail(breachType);
       break;
   }
-  return true;
 }
 
 #endif
