@@ -29,6 +29,12 @@ typedef enum {
   TOO_HIGH
 } BreachType;
 
+
+typedef enum {
+  SENT,
+  NOT_SENT
+} AlertStatus;
+
 BreachType inferBreach(double value, double lowerLimit, double upperLimit);
 
 typedef enum {
@@ -45,8 +51,6 @@ struct BatteryCharacter {
 
 void sendToController(BreachType breachType);
 void sendToEmail(BreachType breachType);
-bool IsAlertSenttoCntrlr();
-bool IsAlertSenttoEmail();
 
 template <class CoolingType>
 BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC) {
@@ -56,7 +60,7 @@ BreachType classifyTemperatureBreach(CoolingType coolingType, double temperature
 }
 
 template <typename CoolingType>
-void checkAndAlert(
+AlertStatus checkAndAlert(
   AlertTarget alertTarget, BatteryCharacter<CoolingType> batteryChar, double temperatureInC) {
 
   BreachType breachType = classifyTemperatureBreach( batteryChar.coolingType, temperatureInC );
@@ -64,9 +68,14 @@ void checkAndAlert(
   switch(alertTarget) {
     case TO_CONTROLLER:
       sendToController(breachType);
+      return SENT;
       break;
     case TO_EMAIL:
       sendToEmail(breachType);
+      return SENT;
+      break;
+    default:
+      return NOT_SENT;
       break;
   }
 }
