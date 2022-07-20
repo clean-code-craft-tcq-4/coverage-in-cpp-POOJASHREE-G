@@ -30,8 +30,6 @@ typedef enum {
   TOO_HIGH
 } BreachType;
 
-static const char *BreachType_str[] = { "NORMAL", "TOO_LOW", "TOO_HIGH"};
-
 BreachType inferBreach(double value, double lowerLimit, double upperLimit);
 
 typedef enum {

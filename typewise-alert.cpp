@@ -1,6 +1,8 @@
 #include "Typewise-alert.hpp"
 #include <iostream>
 
+static const char *BreachType_str[] = { "NORMAL", "TOO_LOW", "TOO_HIGH"};
+
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
     return TOO_LOW;
