@@ -46,10 +46,13 @@ struct BatteryCharacter {
   char brand[48];
 };
 
+void sendToController(BreachType breachType);
+void sendToEmail(BreachType breachType);
+
 template <class CoolingType>
 BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC) {
 
-  return inferBreach(temperatureInC, coolingType.lowerLimit, coolingType.upperLimit);
+  return inferBreach(temperatureInC, coolingType.Lower_Limit, coolingType.Upper_Limit);
 
 }
 
@@ -69,9 +72,6 @@ bool checkAndAlert(
   }
   return true;
 }
-
-void sendToController(BreachType breachType);
-void sendToEmail(BreachType breachType);
 
 const char* recepient = "a.b@c.com";
 

@@ -1,5 +1,5 @@
 #include "Typewise-alert.hpp"
-#include <iostream.h>
+#include <iostream>
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
