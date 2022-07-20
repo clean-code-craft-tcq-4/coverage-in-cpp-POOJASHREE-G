@@ -71,6 +71,4 @@ bool checkAndAlert(
   return true;
 }
 
-const char* recepient = "a.b@c.com";
-
 #endif

@@ -2,6 +2,7 @@
 #include <iostream>
 
 static const char *BreachType_str[] = { "NORMAL", "TOO_LOW", "TOO_HIGH"};
+const char* recepient = "a.b@c.com";
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
