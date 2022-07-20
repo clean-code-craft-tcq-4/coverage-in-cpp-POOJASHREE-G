@@ -59,9 +59,9 @@ TEST_CASE( "Check and alert status to email") {
 
   REQUIRE(checkAndAlert(TO_EMAIL, batteryChar_passive, 12) == SENT );
 
-  REQUIRE(checkAndAlert(TO_EMAIL, batteryChar_hiactive, 26) == SENT );
+  REQUIRE(checkAndAlert(TO_EMAIL, batteryChar_hiactive, 46) == SENT );
 
-  REQUIRE(checkAndAlert(TO_EMAIL, batteryChar_medactive, 8) == SENT );
+  REQUIRE(checkAndAlert(TO_EMAIL, batteryChar_medactive, 0) == SENT );
 }
 
 TEST_CASE( "Check and alert status to email Failure") {
