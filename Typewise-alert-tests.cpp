@@ -67,4 +67,6 @@ TEST_CASE( "Classify Check and alert status to email") {
   REQUIRE(IsAlertSenttoEmail() == (true));
   checkAndAlert(TO_EMAIL, batteryChar_hiactive, 46);
   REQUIRE(IsAlertSenttoEmail() == (true));
+  checkAndAlert(TO_EMAIL, batteryChar_medactive, 45);
+  REQUIRE(IsAlertSenttoEmail() == (true));
 }
