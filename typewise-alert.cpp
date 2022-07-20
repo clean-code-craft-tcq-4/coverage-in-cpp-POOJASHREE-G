@@ -3,8 +3,8 @@
 
 static const char *BreachType_str[] = { "NORMAL", "TOO_LOW", "TOO_HIGH"};
 const char* recepient = "a.b@c.com";
-bool const IsAlertSent2cntrlr = false;
-bool const IsAlertSent2mail = false;
+static bool IsAlertSent2cntrlr = false;
+static bool IsAlertSent2mail = false;
 
 
 bool IsAlertSenttoCntrlr()
