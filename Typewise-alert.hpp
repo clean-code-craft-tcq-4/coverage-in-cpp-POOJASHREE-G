@@ -39,11 +39,6 @@ typedef enum {
   TO_EMAIL
 } AlertTarget;
 
-typedef struct {
-  CoolingType coolingType;
-  char brand[48];
-} BatteryCharacter;
-
 
 template <class CoolingType>
 struct BatteryCharacter {
